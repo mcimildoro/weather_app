@@ -21,7 +21,7 @@ export default function WeatherForm(props) {
     const icon = data.data[0].weather.icon;
     const con_url = `https://www.weatherbit.io/static/img/icons/${icon}.png`;
 
-    console.log(con_url);
+    console.log(data);
     // https://www.weatherbit.io/static/img/icons/r01d.png
     setWeatherData({
       city: data.city_name,
@@ -48,6 +48,12 @@ export default function WeatherForm(props) {
             {moment(day.datetime).format("dddd, DD")}
           </span>
           <div className="mb-0 display-4">{`${Math.trunc(day.temp)}°`}</div>
+          <div className="mb-0 d-flex">
+            <div className="mb-0">
+              {"Max." + `${Math.trunc(day.max_temp)}°`}
+            </div>
+            {" Min." + `${Math.trunc(day.min_temp)}°`}
+          </div>
           <h6 className="text-center title_text">{day.weather.description}</h6>
         </div>
       ));
