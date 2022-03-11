@@ -13,7 +13,7 @@ export default function WeatherForm(props) {
     const { city } = ev.target.elements;
     const cityValue = city.value;
     const apiKey = "59cf256f703b41eba2be17be72fa7249";
-    const API_URL = `https://api.weatherbit.io/v2.0/forecast/daily?city=${cityValue}&key=${apiKey}&lang=es&days=7`;
+    const API_URL = `https://api.weatherbit.io/v2.0/forecast/daily?city=${cityValue}&key=${apiKey}&lang=en&days=7`;
 
     const response = await fetch(API_URL);
     const data = await response.json();
@@ -21,7 +21,7 @@ export default function WeatherForm(props) {
     const icon = data.data[0].weather.icon;
     const con_url = `https://www.weatherbit.io/static/img/icons/${icon}.png`;
 
-    console.log(data);
+    console.log(con_url);
     // https://www.weatherbit.io/static/img/icons/r01d.png
     setWeatherData({
       city: data.city_name,
@@ -35,8 +35,7 @@ export default function WeatherForm(props) {
     });
   }; // end function WeatherForm
 
-  // funcion de mapeo
-
+  // funcion de filtro y map para obtener el pronostico de la semana
   const getNextDays = (days) =>
     days
       .filter((days) => days.datetime > moment().format("YYYY-MM-DD"))
@@ -85,9 +84,13 @@ export default function WeatherForm(props) {
               ) : (
                 <div className="list-group list-group-flush">
                   <h1 className="mb-0">{weatherData && weatherData.city}</h1>
-                  <h1 className="display-4">
+                  <div className="display-4  d-flex ml-5">
                     {weatherData && weatherData.temperature}
-                  </h1>
+                    <img
+                      className="img_forecast"
+                      src={weatherData && weatherData.icon}
+                    />
+                  </div>
                   <h5>{weatherData && weatherData.description}</h5>
                   <h5 className="title_text">
                     {weatherData && "Max." + weatherData.max_temp}
