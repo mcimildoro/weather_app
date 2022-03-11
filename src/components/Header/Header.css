@@ -1,0 +1,14 @@
+.header img {
+  width: 70px;
+  padding: 10px;
+  color: white;
+}
+
+.header {
+  background-color: #39b0d0 !important;
+  color: white;
+}
+
+.header h3{
+    color: #205B63;
+}
