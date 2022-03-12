@@ -13,7 +13,7 @@ export default function WeatherForm(props) {
     const { city } = ev.target.elements;
     const cityValue = city.value;
     const apiKey = "59cf256f703b41eba2be17be72fa7249";
-    const API_URL = `https://api.weatherbit.io/v2.0/forecast/daily?city=${cityValue}&key=${apiKey}&lang=en&days=7`;
+    const API_URL = `https://api.weatherbit.io/v2.0/forecast/daily?city=${cityValue}&key=${apiKey}&lang=en&days=9`;
 
     const response = await fetch(API_URL);
     const data = await response.json();
@@ -42,17 +42,17 @@ export default function WeatherForm(props) {
       .map((day, i) => (
         <div
           key={i}
-          className="card card-body col-sm-auto ml-2 mh-100 d-inline-block text-center"
+          className="card card-body col-sm-auto ml-2 mh-100 d-inline-block text-center mb-2"
         >
           <span className="badge badge-pill badge-info text-center">
             {moment(day.datetime).format("dddd, DD")}
           </span>
           <div className="mb-0 display-4">{`${Math.trunc(day.temp)}°`}</div>
           <div className="mb-0 d-flex">
-            <div className="mb-0">
+            <div className="mb-0 col-sm-auto d-flex">
               {"Max." + `${Math.trunc(day.max_temp)}°`}
             </div>
-            {" Min." + `${Math.trunc(day.min_temp)}°`}
+            {"Min." + `${Math.trunc(day.min_temp)}°`}
           </div>
           <h6 className="text-center title_text">{day.weather.description}</h6>
         </div>
